@@ -1,4 +1,4 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView, CreateAPIView
 from datetime import datetime
 
 from .models import Flight, Booking
@@ -33,3 +33,17 @@ class CancelBooking(DestroyAPIView):
 	queryset = Booking.objects.all()
 	lookup_field = 'id'
 	lookup_url_kwarg = 'booking_id'
+
+
+class BookingCreate(CreateAPIView):
+	serializer_class = UpdateBookingSerializer
+	lookup_field = 'flight'
+	lookup_url_kwarg = 'booking_id'
+	
+	
+	
+	
+	def perform_create(self, serializer):
+		f = Flight.objects.get(id=self.lookup_url_kwarg)
+		serializer.save(user=self.request.user,flight=f)
+
