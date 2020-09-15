@@ -10,7 +10,7 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('login/', TokenObtainPairView.as_view(), name='login'),
     path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('flights/', views.FlightsList.as_view(), name="flights-list"),
