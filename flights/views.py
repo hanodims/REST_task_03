@@ -35,14 +35,13 @@ class CancelBooking(DestroyAPIView):
 	lookup_url_kwarg = 'booking_id'
 
 
-class BookingCreate(RetrieveUpdateAPIView):
-	queryset = Booking.objects.all()
+class BookingCreate(CreateAPIView):
 	serializer_class = UpdateBookingSerializer
-	lookup_field = 'flight'
-	lookup_url_kwarg = 'booking_id'
-
 	
 	def perform_create(self, serializer):
-		f = Flight.objects.get(id=lookup_url_kwarg)
-		serializer.save(user=self.request.user,flight=f)
+		flight_id = self.kwargs['flight_id']
+		serializer.save(
+			user=self.request.user,
+			flight = Flight.objects.get(id=flight_id)
+		)
 

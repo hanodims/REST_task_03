@@ -16,7 +16,7 @@ urlpatterns = [
     path('flights/', views.FlightsList.as_view(), name="flights-list"),
     
     path('bookings/', views.BookingsList.as_view(), name="bookings-list"), 
-    path('bookings/create/<int:booking_id>/', views.BookingCreate.as_view(), name="book-flight"), 
+    path('bookings/create/<int:flight_id>/', views.BookingCreate.as_view(), name="book-flight"), 
     path('booking/<int:booking_id>/', views.BookingDetails.as_view(), name="booking-details"),
     path('booking/<int:booking_id>/update/', views.UpdateBooking.as_view(), name="update-booking"),
     path('booking/<int:booking_id>/cancel/', views.CancelBooking.as_view(), name="cancel-booking"),
